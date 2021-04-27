@@ -1,0 +1,47 @@
+
+894142@PCIN509506 MINGW64 /c/git (master)
+$ ls -al
+total 13
+drwxr-xr-x 1 894142 1049089  0 Apr 15 12:45 ./
+drwxr-xr-x 1 894142 1049089  0 Apr 15 12:40 ../
+drwxr-xr-x 1 894142 1049089  0 Apr 15 12:46 .git/
+-rw-r--r-- 1 894142 1049089 31 Apr 15 12:45 welcome.txt
+
+894142@PCIN509506 MINGW64 /c/git (master)
+$  touch file1.log
+
+894142@PCIN509506 MINGW64 /c/git (master)
+$ mkdir log
+
+894142@PCIN509506 MINGW64 /c/git (master)
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        file1.log
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+894142@PCIN509506 MINGW64 /c/git (master)
+$ vi ~/.gitignore_global
+
+894142@PCIN509506 MINGW64 /c/git (master)
+$ cat ~/.gitignore_global
+file1.log
+
+894142@PCIN509506 MINGW64 /c/git (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+894142@PCIN509506 MINGW64 /c/git (master)
+$ git status --ignored
+On branch master
+Ignored files:
+  (use "git add -f <file>..." to include in what will be committed)
+        file1.log
+
+nothing to commit, working tree clean
+
+894142@PCIN509506 MINGW64 /c/git (master)
+$

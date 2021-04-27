@@ -1,0 +1,194 @@
+
+894142@PCIN509506 MINGW64 /c/git (GitWork)
+$ cd ..
+
+894142@PCIN509506 MINGW64 /c (master)
+$ cd git2
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$  git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint:   git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint:   git branch -m <name>
+Initialized empty Git repository in C:/git2/.git/
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ git branch GitWork
+fatal: Not a valid object name: 'master'.
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ git branch
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ vi file1.txt
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ git add .
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ git commit -m "added file1.txt"
+[master (root-commit) 8bba692] added file1.txt
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file1.txt
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$  git status
+On branch master
+nothing to commit, working tree clean
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ git branch
+* master
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ git branch GitWork
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ git branch
+  GitWork
+* master
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ git checkout GitWork
+Switched to branch 'GitWork'
+
+894142@PCIN509506 MINGW64 /c/git2 (GitWork)
+$ vi hello.xml
+
+894142@PCIN509506 MINGW64 /c/git2 (GitWork)
+$  cat hello.xml
+hello
+
+894142@PCIN509506 MINGW64 /c/git2 (GitWork)
+$ vi hello.xml
+
+894142@PCIN509506 MINGW64 /c/git2 (GitWork)
+$  cat hello.xml
+Data inserted from GitWork branch
+
+894142@PCIN509506 MINGW64 /c/git2 (GitWork)
+$ git add .
+
+894142@PCIN509506 MINGW64 /c/git2 (GitWork)
+$ git commit -m "hello.xml added from GitWork branch"
+[GitWork 56246dd] hello.xml added from GitWork branch
+ 1 file changed, 1 insertion(+)
+ create mode 100644 hello.xml
+
+894142@PCIN509506 MINGW64 /c/git2 (GitWork)
+$ git checkout master
+Switched to branch 'master'
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ vi hello.xml
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$  cat hello.xml
+Data inserted from master branch
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ git add .
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ git commit -m "hello.xml added from master branch"
+[master 06ea7d3] hello.xml added from master branch
+ 1 file changed, 1 insertion(+)
+ create mode 100644 hello.xml
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$  git log --graph --oneline --decorate --all
+* 06ea7d3 (HEAD -> master) hello.xml added from master branch
+| * 56246dd (GitWork) hello.xml added from GitWork branch
+|/
+* 8bba692 added file1.txt
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ git diff master GitWork
+diff --git a/hello.xml b/hello.xml
+index 0472329..e4784c5 100644
+--- a/hello.xml
++++ b/hello.xml
+@@ -1 +1 @@
+-Data inserted from master branch
++Data inserted from GitWork branch
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ git merge GitWork
+CONFLICT (add/add): Merge conflict in hello.xml
+Auto-merging hello.xml
+Automatic merge failed; fix conflicts and then commit the result.
+
+894142@PCIN509506 MINGW64 /c/git2 (master|MERGING)
+$ git config merge.tool vimdiff
+
+894142@PCIN509506 MINGW64 /c/git2 (master|MERGING)
+$  git mergetool
+Merging:
+hello.xml
+
+Normal merge conflict for 'hello.xml':
+  {local}: created file
+  {remote}: created file
+3 files to edit
+
+894142@PCIN509506 MINGW64 /c/git2 (master|MERGING)
+$ git log --graph --oneline --decorate --all
+* 06ea7d3 (HEAD -> master) hello.xml added from master branch
+| * 56246dd (GitWork) hello.xml added from GitWork branch
+|/
+* 8bba692 added file1.txt
+
+894142@PCIN509506 MINGW64 /c/git2 (master|MERGING)
+$ git add .
+
+894142@PCIN509506 MINGW64 /c/git2 (master|MERGING)
+$ git add .
+
+894142@PCIN509506 MINGW64 /c/git2 (master|MERGING)
+$ git commit -m "hello.xml merged"
+[master f5228a7] hello.xml merged
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ cat hello.xml
+<<<<<<< HEAD
+Data inserted from master branch
+=======
+Data inserted from GitWork branch
+>>>>>>> GitWork
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ git branch
+  GitWork
+* master
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ git branch -d GitWork
+Deleted branch GitWork (was 56246dd).
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ git branch
+* master
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$ git log --graph --oneline --decorate
+*   f5228a7 (HEAD -> master) hello.xml merged
+|\
+| * 56246dd hello.xml added from GitWork branch
+* | 06ea7d3 hello.xml added from master branch
+|/
+* 8bba692 added file1.txt
+
+894142@PCIN509506 MINGW64 /c/git2 (master)
+$
